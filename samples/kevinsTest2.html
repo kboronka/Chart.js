@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+   <title>Kevin's Test2</title>
+  <script src="../Chart.js"></script>
+  <link rel="stylesheet" type="text/css" href="chartjs.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+    <meta name="viewport" content="initial-scale = 1, user-scalable = no">
+    <style>
+    canvas {}
+    </style>
+</head>
+
+<body>
+  <h5>kevin's test #2</h5>
+	<div style="width: 100%; height: 100%;">
+		<canvas id="canvas" height="400" width="600"></canvas>
+	</div>
+	<div id="js-legend" class="chart-legend"></div>
+  <script>
+     var overlayData = {
+        labels: ["fault code 1 really super long", "fault2", "fault3", "fault4", 
+                 "fault5", "fault6", "fault7", "fault8", "fault9", "fault10"],
+         datasets: [{
+             label: "fault occurances",
+             type: "bar",
+             yAxesGroup: "1",
+             fillColor: "rgba(255,0,0,0.4)",
+             strokeColor: "rgba(255,0,0,0.7)",
+             pointColor: "rgba(255,0,0,1)",
+             pointStrokeColor: "#fff",
+             pointHighlightFill: "#fff",
+             pointHighlightStroke: "rgba(255,0,0,1)",
+             data: [10, 9, 5, 3, 1, 1, 1, 1, 1, 1]
+         }, {
+             label: "% accumulated fault occurances",
+             type: "line",
+             yAxesGroup: "2",
+             fillColor: "rgba(0,0,255,0)",
+             strokeColor: "rgba(0,0,255,1)",
+             pointColor: "rgba(0,0,255,1)",
+             pointStrokeColor: "#fff",
+             pointHighlightFill: "#fff",
+             pointHighlightStroke: "rgba(0,0,255,1)",
+             data: [64, 80, 87, 90, 91, 92, 93, 94, 95, 96]
+         }],
+         yAxes: [{
+             name: "2",
+             scalePositionLeft: false,
+             scaleLabel: "<%=value%>%",
+             scaleFontColor: "rgba(0,0,255,0.8)",
+             labelLength: 5,
+         }, {
+             name: "1",
+             scalePositionLeft: true,
+             scaleFontColor: "rgba(255,0,0,0.7)"
+         }]
+     };
+
+     var options = {
+         populateSparseData: true,
+         overlayBars: false,
+         datasetFill: true,
+         labelLength: 16,
+         scaleShowHorizontalLines: true,
+         scaleShowVerticalLines: false,
+         multiTooltipTemplate: "<%= value %> <%=datasetLabel %>",
+     }
+
+
+
+
+
+    window.onload = function() {
+      var canvasTag = document.getElementById("canvas").getContext("2d");
+      var chart = new Chart(canvasTag).Overlay(overlayData, options);
+      document.getElementById('js-legend').innerHTML = chart.generateLegend();
+    }
+    </script>
+</body>
+
+</html>
