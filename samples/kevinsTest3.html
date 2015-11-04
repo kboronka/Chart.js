@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+   <title>Kevin's Test2</title>
+  <script src="../chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.29/angular.min.js"></script>
+  <script src="../angular-chart.js"></script>
+  <script src="kevinsTest3.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="../angular-chart.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+  <meta name="viewport" content="initial-scale = 1, user-scalable = no">
+</head>
+
+<body>
+  <div ng-controller="BarCtrl">
+    <h5>kevin's test #3</h5>
+    <canvas id="bar" 
+            class="chart chart-overlay"
+            chart-data="data" 
+            chart-labels="labels">
+    </canvas>
+  </div>
+</body>
+
+</html>
