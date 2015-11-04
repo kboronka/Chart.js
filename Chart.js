@@ -9,6 +9,7 @@
  */
 
 
+// Core
 (function() {
 
         "use strict";
@@ -24,34 +25,35 @@
 
             this.ctx = context;
 
-		//Variables global to the chart
-		var computeDimension = function(element,dimension)
-		{
-			if (element['offset'+dimension])
-			{
-				return element['offset'+dimension];
-			}
-			else
-			{
-				return document.defaultView.getComputedStyle(element).getPropertyValue(dimension);
-			}
-		};
+            //Variables global to the chart
+            var computeDimension = function(element,dimension)
+            {
+              if (element['offset'+dimension])
+              {
+                return element['offset'+dimension];
+              }
+              else
+              {
+                return document.defaultView.getComputedStyle(element).getPropertyValue(dimension);
+              }
+            };
 
-		var width = this.width = computeDimension(context.canvas,'Width') || context.canvas.width;
-		var height = this.height = computeDimension(context.canvas,'Height') || context.canvas.height;
+            var width = this.width = computeDimension(context.canvas,'Width') || context.canvas.width;
+            var height = this.height = computeDimension(context.canvas,'Height') || context.canvas.height;
 
-		// Firefox requires this to work correctly
-		context.canvas.width  = width;
-		context.canvas.height = height;
+            // Firefox requires this to work correctly
+            context.canvas.width  = width;
+            context.canvas.height = height;
 
-		width = this.width = context.canvas.width;
-		height = this.height = context.canvas.height;
-		this.aspectRatio = this.width / this.height;
-		//High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
-		helpers.retinaScale(this);
+            width = this.width = context.canvas.width;
+            height = this.height = context.canvas.height;
+            this.aspectRatio = this.width / this.height;
+            //High pixel density displays - multiply the size of the canvas height/width by the device pixel ratio, then scale.
+            helpers.retinaScale(this);
 
             return this;
         };
+        
         //Globally expose the defaults to allow for user updating/changing
         Chart.defaults = {
             global: {
@@ -73,8 +75,10 @@
                 // ** Required if scaleOverride is true **
                 // Number - The number of steps in a hard coded scale
                 scaleSteps: null,
+              
                 // Number - The value jump in the hard coded scale
                 scaleStepWidth: null,
+              
                 // Number - The scale starting value
                 scaleStartValue: null,
 
@@ -1762,20 +1766,21 @@
                 }
                 return width;
             }
-
-
-
-
         });
     
         Chart.Scale = Chart.Element.extend({
-            initialize: function() {
-                this.xLabels = this.labelLength > 0 ? this.xLabels.map(this.truncateLabel, this) : this.xLabels;
-                this.setUpYAxes();
-                this.fit();
-            },
+          initialize: function() {
+            this.xLabels = this.labelLength > 0 ? this.xLabels.map(this.truncateLabel, this) : this.xLabels;
+            this.setUpYAxes();
+            this.fit();
+          },
              truncateLabel: function(label) {
-                return label.substring(0, this.labelLength);
+                if (label.length > this.labelLength)
+                {
+                  return label.substring(0, this.labelLength) + "...";
+                }
+                
+               return label;
             },
             setUpYAxes: function() {
                 this.yAxes = new Chart.YAxes({
@@ -1932,6 +1937,11 @@
                     }
                     if (this.xLabelRotation > 0) {
                         this.endPoint -= Math.sin(toRadians(this.xLabelRotation)) * originalLabelWidth + 3;
+                    }
+                  
+                    if (this.labelLength == -1)
+                    {
+                      this.endPoint = this.height - 5;
                     }
                 } else {
                     this.xLabelWidth = 0;
@@ -2354,6 +2364,7 @@
 
 }).call(this);
 
+// Bar
 (function() {
     "use strict";
 
@@ -2781,7 +2792,8 @@
 
 }).call(this);
 
-(function(){
+// Doughnut
+(function() {
 	"use strict";
 
 	var root = this,
@@ -2973,6 +2985,8 @@
 	});
 
 }).call(this);
+
+// Line
 (function() {
     "use strict";
 
@@ -3495,6 +3509,7 @@
 
 }).call(this);
 
+// Overlay
 (function() {
     "use strict";
 
@@ -4042,7 +4057,8 @@
 
 }).call(this);
 
-(function(){
+// PolarArea
+(function() {
 	"use strict";
 
 	var root = this,
@@ -4292,7 +4308,9 @@
 	});
 
 }).call(this);
-(function(){
+
+// Radar
+(function() {
 	"use strict";
 
 	var root = this,
