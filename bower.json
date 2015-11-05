@@ -7,5 +7,6 @@
   "main": [
     "Chart.js"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "ignore": {}
 }
