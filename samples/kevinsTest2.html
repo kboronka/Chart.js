@@ -72,11 +72,10 @@
 
 
 
-    window.onload = function() {
-      var canvasTag = document.getElementById("canvas").getContext("2d");
-      var chart = new Chart(canvasTag).Overlay(overlayData, options);
-      document.getElementById('js-legend').innerHTML = chart.generateLegend();
-    }
+    var canvasTag = document.getElementById("canvas").getContext("2d");
+    var chart = new Chart(canvasTag).Overlay(overlayData, options);
+    document.getElementById('js-legend').innerHTML = chart.generateLegend();
+    
     </script>
 </body>
 
