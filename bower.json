@@ -8,5 +8,16 @@
     "Chart.js"
   ],
   "dependencies": {},
-  "ignore": {}
+  "ignore": [
+    "docs",
+    "samples",
+    "src",
+    "Chart.min.js",
+    "gulpfile.js",
+    ".travis.yml",
+    "package.json",
+    "README.md",
+    "CONTRIBUTING.md",
+    "bower.json"
+  ]
 }
