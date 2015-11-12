@@ -2,11 +2,11 @@
   "name": "chart.js",
   "homepage": "http://www.chartjs.org",
   "description": "Simple HTML5 charts using the canvas element.",
-  "version": "1.0.2",
+  "version": "1.2",
   "main": "Chart.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nnnick/Chart.js.git"
+    "url": "https://github.com/kboronka/Chart.js.git"
   },
   "dependences": {},
   "devDependencies": {
